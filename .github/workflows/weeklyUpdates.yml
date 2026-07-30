@@ -1,4 +1,4 @@
-name: Setup
+name: Weekly Update
 
 permissions:
   contents: write
@@ -31,7 +31,7 @@ jobs:
             -f query='
             query($login: String!) {
               user(login: $login) {
-                contributionsCollection(from: $from) {              <- here from start of the month 
+                contributionsCollection(from: $from) {
                   totalCommitContributions
                   totalIssueContributions
                   totalPullRequestContributions
