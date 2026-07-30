@@ -34,10 +34,6 @@ jobs:
             query($login: String!, $from: DateTime!, $to: DateTime!) {
               user(login: $login) {
                 contributionsCollection(from: $from, to: $to) {
-                  totalCommitContributions
-                  totalIssueContributions
-                  totalPullRequestContributions
-                  totalRepositoryContributions
                   contributionCalendar {
                     weeks {
                       contributionDays {
@@ -45,6 +41,16 @@ jobs:
                         date
                         contributionLevel
                       } 
+                    }
+                  }
+                }
+                repositories(orderBy: ) {
+                  nodes {
+                    name 
+                    defaultBranchRef {
+                      target {
+                        
+                      }
                     }
                   }
                 }
