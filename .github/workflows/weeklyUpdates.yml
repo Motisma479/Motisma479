@@ -13,10 +13,11 @@ jobs:
       - name: Check Github CLI presence
         run: gh --version
 
-      - name: Compute Start of the month
+      - name: Compute Dates
         id: date
         run: |
           echo "monthStart=$(date -u +'%Y-%m-01T00:00:00Z')" >> "$GITHUB_OUTPUT"
+          echo "monthEnd=$(date -u -d "$(date -u +'%Y-%m-01') +1 month -1 day" +'%Y-%m-%dT23:59:59Z')" >> "$GITHUB_OUTPUT"
 
       - name: Checkout
         uses: actions/checkout@v7
@@ -28,10 +29,11 @@ jobs:
           gh api graphql \
             -F login="${{github.repository_owner}}" \
             -F from="${{steps.date.outputs.monthStart}}" \
+            -F to="${{steps.date.outputs.monthEnd}}}" \
             -f query='
-            query($login: String!, $from: DateTime!) {
+            query($login: String!, $from: DateTime!, $to: DateTime!) {
               user(login: $login) {
-                contributionsCollection(from: $from) {
+                contributionsCollection(from: $from, to: $from) {
                   totalCommitContributions
                   totalIssueContributions
                   totalPullRequestContributions
