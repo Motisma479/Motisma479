@@ -1,4 +1,4 @@
-name: Weekly Update
+name: weeklyUpdates
 
 permissions:
   contents: write
@@ -26,10 +26,10 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh api graphql \
-            -F login="${{github.repository_owner}}"
-            -F from="${{steps.date.outputs.monthStart}}"
+            -F login="${{github.repository_owner}}" \
+            -F from="${{steps.date.outputs.monthStart}}" \
             -f query='
-            query($login: String!) {
+            query($login: String!, $from: DateTime!) {
               user(login: $login) {
                 contributionsCollection(from: $from) {
                   totalCommitContributions
@@ -41,7 +41,7 @@ jobs:
                       contributionDays {
                         contributionCount
                         date
-                        color
+                        contributionLevel
                       } 
                     }
                   }
