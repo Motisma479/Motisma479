@@ -34,7 +34,7 @@ jobs:
             -F gitTo="${{steps.date.outputs.monthEnd}}" \
             -f query='
             query($login: String!, $from: DateTime!, $to: DateTime!, $gitFrom: GitTimestamp!, $gitTo: GitTimestamp!) {
-              user(login: $login) {
+              viewer {
                 contributionsCollection(from: $from, to: $to) {
                   totalCommitContributions
                   totalIssueContributions
