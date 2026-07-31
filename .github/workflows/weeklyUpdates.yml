@@ -44,12 +44,20 @@ jobs:
                     }
                   }
                 }
-                repositories(orderBy: ) {
+                repositories(orderBy: {
+                    field: UPDATED_AT
+                    direction: DESC
+                  }
+                ) {
                   nodes {
                     name 
                     defaultBranchRef {
                       target {
-                        
+                        ... on Commit {
+                          history(since: $from, until: $to) {
+                            totalCount
+                          }
+                        }
                       }
                     }
                   }
