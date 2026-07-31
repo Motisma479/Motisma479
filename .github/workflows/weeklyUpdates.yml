@@ -46,7 +46,7 @@ jobs:
                     }
                   }
                 }
-                repositories(orderBy: {
+                repositories(first: 100, orderBy: {
                     field: UPDATED_AT
                     direction: DESC
                   }
