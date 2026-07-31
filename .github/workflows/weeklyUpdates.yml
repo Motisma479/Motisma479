@@ -29,10 +29,8 @@ jobs:
           gh api graphql \
             -F from="${{steps.date.outputs.monthStart}}" \
             -F to="${{steps.date.outputs.monthEnd}}" \
-            -F gitFrom="${{steps.date.outputs.monthStart}}" \
-            -F gitTo="${{steps.date.outputs.monthEnd}}" \
             -f query='
-            query($from: DateTime!, $to: DateTime!, $gitFrom: GitTimestamp!, $gitTo: GitTimestamp!) {
+            query($from: DateTime!, $to: DateTime!) {
               viewer {
                 contributionsCollection(from: $from, to: $to) {
                   totalCommitContributions
@@ -51,24 +49,6 @@ jobs:
                         date
                         contributionLevel
                       } 
-                    }
-                  }
-                }
-                repositories(first: 100, orderBy: {
-                    field: UPDATED_AT
-                    direction: DESC
-                  }
-                ) {
-                  nodes {
-                    name 
-                    defaultBranchRef {
-                      target {
-                        ... on Commit {
-                          history(since: $gitFrom, until: $gitTo) {
-                            totalCount
-                          }
-                        }
-                      }
                     }
                   }
                 }
