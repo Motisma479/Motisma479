@@ -30,8 +30,10 @@ jobs:
             -F login="${{github.repository_owner}}" \
             -F from="${{steps.date.outputs.monthStart}}" \
             -F to="${{steps.date.outputs.monthEnd}}" \
+            -F gitFrom="${{steps.date.outputs.monthStart}}" \
+            -F gitTo="${{steps.date.outputs.monthEnd}}" \
             -f query='
-            query($login: String!, $from: DateTime!, $to: DateTime!) {
+            query($login: String!, $from: DateTime!, $to: DateTime!, $gitFrom: GitTimestamp!, $gitTo: GitTimestamp!) {
               user(login: $login) {
                 contributionsCollection(from: $from, to: $to) {
                   contributionCalendar {
@@ -54,7 +56,7 @@ jobs:
                     defaultBranchRef {
                       target {
                         ... on Commit {
-                          history(since: $from, until: $to) {
+                          history(since: $gitFrom, until: $gitTo) {
                             totalCount
                           }
                         }
