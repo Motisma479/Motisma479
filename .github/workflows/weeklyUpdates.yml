@@ -5,7 +5,9 @@ permissions:
 
 on:
   workflow_dispatch:
-   
+  schedule:
+    - cron: '0 12 * * 3'
+
 jobs:
   updates:
     runs-on: ubuntu-latest
@@ -55,12 +57,6 @@ jobs:
                 }
               }
             }' > contributions.json
-      
-      - name: Upload contribution data
-        uses: actions/upload-artifact@v7
-        with:
-          name: contributions-data
-          path: contributions.json
 
       - name: Generate Monthly Graph
         run: python Tools/GenerateMonthlyGraph.py contributions.json
