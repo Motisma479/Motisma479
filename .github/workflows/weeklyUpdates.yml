@@ -27,13 +27,12 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh api graphql \
-            -F login="${{github.repository_owner}}" \
             -F from="${{steps.date.outputs.monthStart}}" \
             -F to="${{steps.date.outputs.monthEnd}}" \
             -F gitFrom="${{steps.date.outputs.monthStart}}" \
             -F gitTo="${{steps.date.outputs.monthEnd}}" \
             -f query='
-            query($login: String!, $from: DateTime!, $to: DateTime!, $gitFrom: GitTimestamp!, $gitTo: GitTimestamp!) {
+            query($from: DateTime!, $to: DateTime!, $gitFrom: GitTimestamp!, $gitTo: GitTimestamp!) {
               viewer {
                 contributionsCollection(from: $from, to: $to) {
                   totalCommitContributions
