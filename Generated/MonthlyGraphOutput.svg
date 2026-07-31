@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="175.2" width="335.7">
+    <defs>
+        <style>
+            :root {
+                --fontStack-sansSerif:"Mona Sans VF", -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+                --text-body-size-small: 1rem;
+                --text-body-size-big: 1.5rem;
+                --base-text-weight-normal: 400;
+                --fgColor-default: #f0f6fc;
+            }
+            .descriptor
+            {
+                font-family: var(--fontStack-sansSerif);
+                font-size: var(--text-body-size-small);
+                font-weight: var(--base-text-weight-normal);
+                color: var(--fgColor-default);
+                fill: var(--fgColor-default);
+            }
+            .title
+            {
+                font-size: var(--text-body-size-big);
+                text-decoration: underline;
+                font-weight: 600;
+            }
+        </style>
+    </defs>
+
+    <g id="month"><rect x="54.6" y="95.1" width="15" height="15" rx="2" fill="#151b23" /><rect x="54.6" y="113.6" width="15" height="15" rx="2" fill="#151b23" /><rect x="54.6" y="132.1" width="15" height="15" rx="2" fill="#151b23" /><rect x="54.6" y="150.6" width="15" height="15" rx="2" fill="#151b23" /><rect x="73.1" y="39.6" width="15" height="15" rx="2" fill="#151b23" /><rect x="73.1" y="58.1" width="15" height="15" rx="2" fill="#151b23" /><rect x="73.1" y="76.6" width="15" height="15" rx="2" fill="#033a16" /><rect x="73.1" y="95.1" width="15" height="15" rx="2" fill="#151b23" /><rect x="73.1" y="113.6" width="15" height="15" rx="2" fill="#151b23" /><rect x="73.1" y="132.1" width="15" height="15" rx="2" fill="#2ea043" /><rect x="73.1" y="150.6" width="15" height="15" rx="2" fill="#151b23" /><rect x="91.6" y="39.6" width="15" height="15" rx="2" fill="#151b23" /><rect x="91.6" y="58.1" width="15" height="15" rx="2" fill="#196c2e" /><rect x="91.6" y="76.6" width="15" height="15" rx="2" fill="#151b23" /><rect x="91.6" y="95.1" width="15" height="15" rx="2" fill="#033a16" /><rect x="91.6" y="113.6" width="15" height="15" rx="2" fill="#033a16" /><rect x="91.6" y="132.1" width="15" height="15" rx="2" fill="#151b23" /><rect x="91.6" y="150.6" width="15" height="15" rx="2" fill="#151b23" /><rect x="110.1" y="39.6" width="15" height="15" rx="2" fill="#151b23" /><rect x="110.1" y="58.1" width="15" height="15" rx="2" fill="#151b23" /><rect x="110.1" y="76.6" width="15" height="15" rx="2" fill="#033a16" /><rect x="110.1" y="95.1" width="15" height="15" rx="2" fill="#2ea043" /><rect x="110.1" y="113.6" width="15" height="15" rx="2" fill="#033a16" /><rect x="110.1" y="132.1" width="15" height="15" rx="2" fill="#033a16" /><rect x="110.1" y="150.6" width="15" height="15" rx="2" fill="#151b23" /><rect x="128.6" y="39.6" width="15" height="15" rx="2" fill="#151b23" /><rect x="128.6" y="58.1" width="15" height="15" rx="2" fill="#151b23" /><rect x="128.6" y="76.6" width="15" height="15" rx="2" fill="#151b23" /><rect x="128.6" y="95.1" width="15" height="15" rx="2" fill="#56d364" /><rect x="128.6" y="113.6" width="15" height="15" rx="2" fill="#196c2e" /><rect x="128.6" y="132.1" width="15" height="15" rx="2" fill="#2ea043" /></g>
+  
+    <text id="mon" class="descriptor" y="73.1" x="9.6">Mon</text>
+    <text id="wed" class="descriptor" y="110.1" x="9.6">Wed</text>
+    <text id="fri" class="descriptor" y="147.1" x="9.6">Fri</text>
+    
+    <text id="monthText" class="descriptor" dominant-baseline="hanging" text-anchor="middle" x="99.1" y="9.6">Jul</text>
+
+    <rect id="border" x="1" y="1" width="333.7" rx="10" fill="none" stroke="#3d444d" stroke-width=".0625rem" height="173.2" />
+
+    <line id="separator" stroke="#3d444d" stroke-width=".0625rem" stroke-linecap="round" x1="162.1" x2="162.1" y1="9.6" y2="165.6" />
+
+    <text id="statTitle" dominant-baseline="hanging" text-anchor="middle" class="descriptor title" y="9.6" x="247.89999999999998">Stats</text>
+    
+    
+    
+
+<text x="172.1" y="55" class="descriptor">&#8226; 72 new commits</text><text x="172.1" y="80" class="descriptor">&#8226; 5 new repositories</text></svg>
