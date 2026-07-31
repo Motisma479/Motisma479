@@ -43,6 +43,7 @@ jobs:
                   totalRepositoriesWithContributedPullRequests 
                   totalRepositoryContributions 
                   contributionCalendar {
+                    totalContributions
                     weeks {
                       contributionDays {
                         contributionCount
@@ -61,13 +62,26 @@ jobs:
           name: contributions-data
           path: contributions.json
 
-      # - name: Generate SVG
-      #   run: python generate.py contributions.json
+      - name: Generate Monthly Graph
+        run: python Tools/GenerateMonthlyGraph.py contributions.json
 
-      # - name: Commit and push
-      #   run: |
-      #     git config user.name "${{ github.actor }}"
-      #     git config user.email "${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com"
-      #     git add -A
-      #     git commit -m "[Workflow] Initialize repository as ${{ steps.name.outputs.safe }}"
-      #     git push
+      - name: Commit and push
+        run: |
+          TOTAL=$(python -c "import json;print(json.load(open('contributions.json'))['data']['viewer']['contributionsCollection']['contributionCalendar']['totalContributions'])")
+          LAST=0
+          if [ -f .github/.lastWorkflow ]; then
+            LAST=$(cat .github/.lastWorkflow)
+          fi
+
+          if [ "$TOTAL" = "$LAST" ]; then
+            echo "No new contributions."
+            exit 0
+          fi
+
+          echo "$TOTAL" > .github/.lastWorkflow
+          
+          git config user.name "${{ github.repository_owner }}"
+          git config user.email "${{ github.repository_owner_id }}+${{ github.repository_owner }}@users.noreply.github.com"
+          git add -A
+          git commit -m "[Workflow] Weekly Updates: $TOTAL contributions in the last month"
+          git push
