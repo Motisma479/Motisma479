@@ -27,11 +27,14 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh api graphql \
-            -F from="${{steps.date.outputs.monthStart}}" \
-            -F to="${{steps.date.outputs.monthEnd}}" \
+            -F login="Motisma479" \
+            -F from="2026-07-01T00:00:00Z" \
+            -F to="2026-07-31T23:59:59Z" \
+            -F gitFrom="2026-07-01T00:00:00Z" \
+            -F gitTo="2026-07-31T23:59:59Z" \
             -f query='
-            query($from: DateTime!, $to: DateTime!) {
-              viewer {
+            query($login: String!, $from: DateTime!, $to: DateTime!, $gitFrom: GitTimestamp!, $gitTo: GitTimestamp!) {
+              user(login: $login) {
                 contributionsCollection(from: $from, to: $to) {
                   totalCommitContributions
                   totalIssueContributions
@@ -49,6 +52,24 @@ jobs:
                         date
                         contributionLevel
                       } 
+                    }
+                  }
+                }
+                repositories(first: 100, orderBy: {
+                    field: UPDATED_AT
+                    direction: DESC
+                  }
+                ) {
+                  nodes {
+                    name 
+                    defaultBranchRef {
+                      target {
+                        ... on Commit {
+                          history(since: $gitFrom, until: $gitTo) {
+                            totalCount
+                          }
+                        }
+                      }
                     }
                   }
                 }
