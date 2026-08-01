@@ -224,7 +224,7 @@ if(EntryCount == 0):
     if(estimate_width(Txt.text) > longestString): longestString = estimate_width(Txt.text)
     Txt.set("x",str((gridMaxX + cellSize + gap + ( longestString / 2) + 5)))
     Txt.set("text-anchor","middle")
-    root.append(Txt))
+    root.append(Txt)
 
 border.set("width",str(gridMaxX + cellSize + gap + 10 + longestString))
 root.set("width",str(float(border.get("width"))+2))
