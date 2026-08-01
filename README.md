@@ -1,6 +1,7 @@
 
 # Hi, I'm Mathieu Robion! 👋
 
+<img width="auto" height="175" alt="MonthlyGraph" src="Generated/MonthlyGraphOutput.svg" />
 
 ## 🚀 About Me
 I've been a developer for 6 years and I have a strong interest in game engines, graphics, and low-level programming.

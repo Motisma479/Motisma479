@@ -31,11 +31,11 @@
     <text id="wed" class="descriptor" y="110.1" x="9.6">Wed</text>
     <text id="fri" class="descriptor" y="147.1" x="9.6">Fri</text>
     
-    <text id="monthText" class="descriptor" dominant-baseline="hanging" text-anchor="middle" x="99.1" y="9.6">Jul</text>
+    <text id="monthText" class="descriptor" dominant-baseline="hanging" text-anchor="middle" x="108.35" y="9.6">Aug</text>
 
     <rect id="border" x="1" y="1" width="332.1" rx="10" fill="none" stroke="#3d444d" stroke-width=".0625rem" height="173.2" />
 
-    <line id="separator" stroke="#3d444d" stroke-width=".0625rem" stroke-linecap="round" x1="162.1" x2="162.1" y1="9.6" y2="165.6" />
+    <line id="separator" stroke="#3d444d" stroke-width=".0625rem" stroke-linecap="round" x1="180.6" x2="180.6" y1="9.6" y2="165.6" />
 
     <text id="statTitle" dominant-baseline="hanging" text-anchor="middle" class="descriptor title" y="9.6" x="247.10000000000002">Stat</text>
 
