@@ -37,7 +37,7 @@ char_width = {
     "6": 1.2,
     "7": 1.2,
     "8": 1.2,
-    "9": 1.2,
+    "9": 1.2
 }
 
 def estimate_width(text, base=8):
@@ -157,62 +157,71 @@ newRepo = contribution["data"]["viewer"]["contributionsCollection"]["totalReposi
 
 EntryCount = (commit > 0) + (issue > 0) + (pullRequestOppend > 0) + (pullRequestReview > 0) + (newRepo > 0)
 
+
+longestString = 0
 if(EntryCount > 1 ):
     statTitle.text = 'Stats'
+    lastY = 30
+    if(commit > 0):
+        commitTxt = ET.Element("text")
+        commitTxt.set("x",str(gridMaxX + cellSize + gap +10))
+        lastY += 25
+        commitTxt.set("y",str(lastY))
+        commitTxt.set("class","descriptor")
+        commitTxt.text = f"• {str(commit)} new {'commit' if commit == 1 else 'commits'}"
+        if(estimate_width(commitTxt.text) > longestString): longestString = estimate_width(commitTxt.text)
+        root.append(commitTxt)
+
+    if(issue > 0):
+        issueTxt = ET.Element("text")
+        issueTxt.set("x",str(gridMaxX + cellSize + gap +10))
+        lastY += 25
+        issueTxt.set("y",str(lastY))
+        issueTxt.set("class","descriptor")
+        issueTxt.text = f"• {str(issue)} new {'issue' if issue == 1 else 'issues'}"
+        if(estimate_width(issueTxt.text) > longestString): longestString = estimate_width(issueTxt.text)
+        root.append(issueTxt)
+    
+    if(pullRequestOppend > 0):
+        pullTxt = ET.Element("text")
+        pullTxt.set("x",str(gridMaxX + cellSize + gap +10))
+        lastY += 25
+        pullTxt.set("y",str(lastY))
+        pullTxt.set("class","descriptor")
+        pullTxt.text = f"• {str(pullRequestOppend)} new pull {'request' if pullRequestOppend == 1 else 'requests'}"
+        if(estimate_width(pullTxt.text) > longestString): longestString= estimate_width(pullTxt.text)
+        root.append(pullTxt)
+        
+    if(pullRequestReview > 0):
+        reviewTxt = ET.Element("text")
+        reviewTxt.set("x",str(gridMaxX + cellSize + gap +10))
+        lastY += 25
+        reviewTxt.set("y",str(lastY))
+        reviewTxt.set("class","descriptor")
+        reviewTxt.text = f"• {str(pullRequestReview)} pull request {'review' if pullRequestReview == 1 else 'reviews'}"
+        if(estimate_width(reviewTxt.text) > longestString): longestString = estimate_width(reviewTxt.text)
+        root.append(reviewTxt)
+        
+    if(newRepo > 0):
+        repoTxt = ET.Element("text")
+        repoTxt.set("x",str(gridMaxX + cellSize + gap +10))
+        lastY += 25
+        repoTxt.set("y",str(lastY))
+        repoTxt.set("class","descriptor")
+        repoTxt.text = f"• {str(newRepo)} new {'repository' if newRepo == 1 else 'repositories'}"
+        if(estimate_width(repoTxt.text) > longestString): longestString = estimate_width(repoTxt.text)
+        root.append(repoTxt)
 else:
     statTitle.text = 'Stat'
+    Txt = ET.Element("text")
+    Txt.set("y",str((30 + float(root.get("height"))) /2 ))
+    Txt.set("class","descriptor")
+    Txt.text = "No contributions yet"
+    if(estimate_width(Txt.text) > longestString): longestString = estimate_width(Txt.text)
+    Txt.set("x",str((gridMaxX + cellSize + gap + ( longestString / 2) + 5)))
+    Txt.set("text-anchor","middle")
+    root.append(Txt)
 
-lastY = 30
-longestString = 0
-if(commit > 0):
-    commitTxt = ET.Element("text")
-    commitTxt.set("x",str(gridMaxX + cellSize + gap +10))
-    lastY += 25
-    commitTxt.set("y",str(lastY))
-    commitTxt.set("class","descriptor")
-    commitTxt.text = f"• {str(commit)} new {'commit' if commit == 1 else 'commits'}"
-    if(estimate_width(commitTxt.text) > longestString): longestString = estimate_width(commitTxt.text)
-    root.append(commitTxt)
-
-if(issue > 0):
-    issueTxt = ET.Element("text")
-    issueTxt.set("x",str(gridMaxX + cellSize + gap +10))
-    lastY += 25
-    issueTxt.set("y",str(lastY))
-    issueTxt.set("class","descriptor")
-    issueTxt.text = f"• {str(issue)} new {'issue' if issue == 1 else 'issues'}"
-    if(estimate_width(issueTxt.text) > longestString): longestString = estimate_width(issueTxt.text)
-    root.append(issueTxt)
- 
-if(pullRequestOppend > 0):
-    pullTxt = ET.Element("text")
-    pullTxt.set("x",str(gridMaxX + cellSize + gap +10))
-    lastY += 25
-    pullTxt.set("y",str(lastY))
-    pullTxt.set("class","descriptor")
-    pullTxt.text = f"• {str(pullRequestOppend)} new pull {'request' if pullRequestOppend == 1 else 'requests'}"
-    if(estimate_width(pullTxt.text) > longestString): longestString= estimate_width(pullTxt.text)
-    root.append(pullTxt)
-    
-if(pullRequestReview > 0):
-    reviewTxt = ET.Element("text")
-    reviewTxt.set("x",str(gridMaxX + cellSize + gap +10))
-    lastY += 25
-    reviewTxt.set("y",str(lastY))
-    reviewTxt.set("class","descriptor")
-    reviewTxt.text = f"• {str(pullRequestReview)} pull request {'review' if pullRequestReview == 1 else 'reviews'}"
-    if(estimate_width(reviewTxt.text) > longestString): longestString = estimate_width(reviewTxt.text)
-    root.append(reviewTxt)
-    
-if(newRepo > 0):
-    repoTxt = ET.Element("text")
-    repoTxt.set("x",str(gridMaxX + cellSize + gap +10))
-    lastY += 25
-    repoTxt.set("y",str(lastY))
-    repoTxt.set("class","descriptor")
-    repoTxt.text = f"• {str(newRepo)} new {'repository' if newRepo == 1 else 'repositories'}"
-    if(estimate_width(repoTxt.text) > longestString): longestString = estimate_width(repoTxt.text)
-    root.append(repoTxt)
 
 border.set("width",str(gridMaxX + cellSize + gap + 10 + longestString))
 root.set("width",str(float(border.get("width"))+2))

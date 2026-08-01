@@ -54,8 +54,5 @@
     />
 
     <text id="statTitle"  dominant-baseline="hanging" text-anchor="middle" class="descriptor title"></text>
-    <!-- <text id="wed" class="descriptor">Wed</text> -->
-    <!-- <text id="fri" class="descriptor">Fri</text> -->
-    
 
 </svg>
